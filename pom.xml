@@ -10,29 +10,479 @@
     </parent>
 
 
-    <!-- TODO: replace with your coordinates -->
-    <groupId>de.eitco</groupId>
-    <artifactId>eitco-maven-template</artifactId>
+    <groupId>de.eitco.commons</groupId>
+    <artifactId>eitco-oss-commons-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <developers>
-        <!-- TODO: add developers concerned -->
+        <developer>
+            <name>Jan Schwarz</name>
+            <email>jschwarz@eitco.de</email>
+        </developer>
     </developers>
 
     <scm>
-        <!-- TODO: replace with your repository url -->
-        <url>https://github.com/eitco/maven-template.git</url>
-        <connection>scm:git:https://github.com/eitco/maven-template.git</connection>
-        <developerConnection>scm:git:https://github.com/eitco/maven-template.git</developerConnection>
+        <url>https://github.com/eitco/eitco-oss-commons-parent.git</url>
+        <connection>scm:git:https://github.com/eitco/eitco-oss-commons-parent.git</connection>
+        <developerConnection>scm:git:https://github.com/eitco/eitco-oss-commons-parent.git</developerConnection>
     </scm>
 
+    <properties>
+        <spring.version>6.1.4</spring.version>
+        <spring.boot.version>3.2.3</spring.boot.version>
+        <spring-security.version>6.2.2</spring-security.version>
+        <spring-security-oauth2.version>2.5.2.RELEASE</spring-security-oauth2.version>
+        <spring.cloud.version>2023.0.0</spring.cloud.version>
+        <codecentric.spring.version>3.1.8</codecentric.spring.version>
+        <spring-web.version>${spring.version}</spring-web.version>
+        <spring-asciidoctor-extensions.version>0.6.1</spring-asciidoctor-extensions.version>
+
+        <spring-boot-starter-jooq.version>${spring.boot.version}</spring-boot-starter-jooq.version>
+
+        <jooq.version>3.18.11</jooq.version>
+        <kotlin.version>1.9.22</kotlin.version>
+
+        <jackson.version>2.15.4</jackson.version>
+        <xml.maven.plugin.version>1.1.0</xml.maven.plugin.version>
+        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+        <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
+        <process.exec.maven.plugin.version>0.8</process.exec.maven.plugin.version>
+
+        <jmeter.maven.plugin.version>3.0.0</jmeter.maven.plugin.version>
+        <pdfbox.version>2.0.12</pdfbox.version>
+        <apache.jmeter.version>5.0</apache.jmeter.version>
+        <commons-codec.version>1.16.1</commons-codec.version>
+        <commons.io.version>2.11.0</commons.io.version>
+        <commons.lang3.version>3.13.0</commons.lang3.version>
+        <commons.pool.version>1.6</commons.pool.version>
+        <commons.text.version>1.10.0</commons.text.version>
+
+        <tika.version>${cmn.tika.version}</tika.version>
+        <cmn.tika.version>2.8.0</cmn.tika.version> <!-- used to avoid conflicts with BOMs using the tika.version property -->
+        <pdfbox.version>2.0.28</pdfbox.version> <!-- must match version used by tika, used by tika pdf module -->
+
+        <apache.http.client.version>4.5.14</apache.http.client.version>
+        <httpclient5.version>5.2.3</httpclient5.version>
+        <com.google.guava.guava.version>31.1-jre</com.google.guava.guava.version>
+        <com.sun.xml.bind.jaxb-impl.version>2.4.0-b180830.0438</com.sun.xml.bind.jaxb-impl.version>
+        <caffeine.version>3.1.8</caffeine.version>
+        <org.postgresql.version>42.6.1</org.postgresql.version>
+        <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
+        <org.camunda.bpm.springboot.webapp.version>3.2.1</org.camunda.bpm.springboot.webapp.version>
+
+        <swagger-annotations.version>1.5.20</swagger-annotations.version>
+        <swagger.version>5.3.1</swagger.version>
+        <liquibase.version>4.25.1</liquibase.version>
+        <infinispan-spring-boot-starter-embedded.version>13.0.11.Final</infinispan-spring-boot-starter-embedded.version>
+        <infinispan_.version>13.0.11.Final</infinispan_.version>
+        <confluence.reporting.maven.plugin.version>6.7.1</confluence.reporting.maven.plugin.version>
+        <commons.compress.version>1.22</commons.compress.version>
+        <xstream.version>1.4.20</xstream.version>
+        <snakeyaml.version>2.2</snakeyaml.version>
+        <jettison.version>1.5.1</jettison.version>
+        <xnio.version>3.8.8.Final</xnio.version>
+        <jolokia.version>1.7.2</jolokia.version>
+
+        <bom.directory>${project.build.directory}</bom.directory>
+        <bom.filename>dependency-management.xml</bom.filename>
+        <bom.path>${bom.directory}/${bom.filename}</bom.path>
+        <bom.artifactId>${project.artifactId}-bom</bom.artifactId>
+        <bom.maven.plugin.version>4.0.0</bom.maven.plugin.version>
+        <flatten.maven.plugin.version>1.5.0</flatten.maven.plugin.version>
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jooq</groupId>
+                        <artifactId>jooq</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <!-- TODO remove after next spring cloud update! Fix for https://github.com/spring-cloud/spring-cloud-commons/issues/1315 -->
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-commons</artifactId>
+                <version>4.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${codecentric.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${codecentric.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-core</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring-web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${spring-security-oauth2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-jooq</artifactId>
+                <version>${spring-boot-starter-jooq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-jooq</artifactId>
+                <version>${spring-boot-starter-jooq.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jooq</groupId>
+                        <artifactId>jooq</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-meta</artifactId>
+                <version>${jooq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen</artifactId>
+                <version>${jooq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-xml</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-parameter-names</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-yaml</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-kotlin</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib-jdk7</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib-jdk8</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-reflect</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-test</artifactId>
+                <version>${kotlin.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-test-junit</artifactId>
+                <version>${kotlin.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.jmeter</groupId>
+                <artifactId>ApacheJMeter_java</artifactId>
+                <version>${apache.jmeter.version}</version>
+            </dependency>
+            <!-- deprecated -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${apache.http.client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.client5</groupId>
+                <artifactId>httpclient5</artifactId>
+                <version>${httpclient5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-compress</artifactId>
+                <version>${commons.compress.version}</version>
+            </dependency>
+            <!-- deprecated -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>${jakarta.servlet-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${com.google.guava.guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-pool</groupId>
+                <artifactId>commons-pool</artifactId>
+                <version>${commons.pool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>${commons.text.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>${com.sun.xml.bind.jaxb-impl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${org.postgresql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.camunda.bpm.springboot</groupId>
+                <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
+                <version>${org.camunda.bpm.springboot.webapp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotations.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>${caffeine.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.bsc.maven</groupId>
+                <artifactId>maven-confluence-processor-freemarker</artifactId>
+                <version>${confluence.reporting.maven.plugin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thoughtworks.xstream</groupId>
+                <artifactId>xstream</artifactId>
+                <version>${xstream.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jettison</groupId>
+                <artifactId>jettison</artifactId>
+                <version>${jettison.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.xnio</groupId>
+                <artifactId>xnio-api</artifactId>
+                <version>${xnio.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.xnio</groupId>
+                <artifactId>xnio-nio</artifactId>
+                <version>${xnio.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jolokia</groupId>
+                <artifactId>jolokia-core</artifactId>
+                <version>${jolokia.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>flatten-maven-plugin</artifactId>
+                    <version>${flatten.maven.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>generate-bom</id>
+                            <goals>
+                                <goal>flatten</goal>
+                            </goals>
+                            <phase>generate-sources</phase>
+                            <configuration>
+                                <flattenMode>defaults</flattenMode>
+                                <updatePomFile>false</updatePomFile>
+                                <outputDirectory>${bom.directory}/template</outputDirectory>
+                                <flattenedPomFilename>${bom.filename}</flattenedPomFilename>
+                                <pomElements>
+                                    <repositories>flatten</repositories>
+                                    <dependencyManagement>interpolate</dependencyManagement>
+                                </pomElements>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>fill-bom</id>
+                            <phase>process-sources</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <resources>
+                                    <resource>
+                                        <directory>${bom.directory}/template</directory>
+                                        <filtering>true</filtering>
+                                    </resource>
+                                </resources>
+                                <outputDirectory>${bom.directory}</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>de.eitco.cide</groupId>
+                    <artifactId>bom-maven-plugin</artifactId>
+                    <version>${bom.maven.plugin.version}</version>
+                    <configuration>
+                        <additionalBoms>
+                            <additionalBom>${bom.path}</additionalBom>
+                        </additionalBoms>
+                        <artifactId>${bom.artifactId}</artifactId>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>create</goal>
+                                <goal>install</goal>
+                                <goal>deploy</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <inherited>false</inherited>
+            </plugin>
+            <plugin>
+                <groupId>de.eitco.cide</groupId>
+                <artifactId>bom-maven-plugin</artifactId>
+                <configuration>
+                    <artifactId>eitco-oss-commons-bom</artifactId>
+                </configuration>
+                <inherited>false</inherited>
             </plugin>
         </plugins>
     </build>
