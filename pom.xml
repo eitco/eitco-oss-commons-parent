@@ -511,7 +511,7 @@
                 <artifactId>maven-gpg-plugin</artifactId>
                 <configuration>
                     <excludes>
-                        <exclude>eitco-oss-commons-bom</exclude>
+                        <exclude>**/eitco-oss-commons-bom.**</exclude>
                     </excludes>
                 </configuration>
                 <inherited>false</inherited>
