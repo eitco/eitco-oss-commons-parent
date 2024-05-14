@@ -22,6 +22,21 @@
         </developer>
     </developers>
 
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/eitco/eitco-oss-parent</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <checksumPolicy>fail</checksumPolicy>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <scm>
         <url>https://github.com/eitco/eitco-oss-commons-parent.git</url>
         <connection>scm:git:https://github.com/eitco/eitco-oss-commons-parent.git</connection>
@@ -88,7 +103,7 @@
         <bom.filename>dependency-management.xml</bom.filename>
         <bom.path>${bom.directory}/${bom.filename}</bom.path>
         <bom.artifactId>${project.artifactId}-bom</bom.artifactId>
-        <bom.maven.plugin.version>4.0.0</bom.maven.plugin.version>
+        <bom.maven.plugin.version>5.0.0-SNAPSHOT</bom.maven.plugin.version>
         <flatten.maven.plugin.version>1.5.0</flatten.maven.plugin.version>
 
     </properties>
@@ -443,7 +458,7 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <groupId>de.eitco.cide</groupId>
+                    <groupId>de.eitco.cicd</groupId>
                     <artifactId>bom-maven-plugin</artifactId>
                     <version>${bom.maven.plugin.version}</version>
                     <configuration>
@@ -456,8 +471,6 @@
                         <execution>
                             <goals>
                                 <goal>create</goal>
-                                <goal>install</goal>
-                                <goal>deploy</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -477,7 +490,7 @@
                 <inherited>false</inherited>
             </plugin>
             <plugin>
-                <groupId>de.eitco.cide</groupId>
+                <groupId>de.eitco.cicd</groupId>
                 <artifactId>bom-maven-plugin</artifactId>
                 <configuration>
                     <artifactId>eitco-oss-commons-bom</artifactId>
