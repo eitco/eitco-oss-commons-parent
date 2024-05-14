@@ -100,14 +100,6 @@
         <xnio.version>3.8.8.Final</xnio.version>
         <jolokia.version>1.7.2</jolokia.version>
 
-        <bom.directory>${project.build.directory}</bom.directory>
-        <bom.filename>dependency-management.xml</bom.filename>
-        <bom.path>${bom.directory}/${bom.filename}</bom.path>
-        <bom.artifactFilename>bom.xml</bom.artifactFilename>
-        <bom.artifactPath>${project.build.directory}/${bom.artifactFilename}</bom.artifactPath>
-        <bom.artifactId>${project.artifactId}-bom</bom.artifactId>
-        <bom.maven.plugin.version>5.0.0-SNAPSHOT</bom.maven.plugin.version>
-        <flatten.maven.plugin.version>1.5.0</flatten.maven.plugin.version>
 
     </properties>
 
@@ -412,81 +404,14 @@
 
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>flatten-maven-plugin</artifactId>
-                    <version>${flatten.maven.plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>generate-bom</id>
-                            <goals>
-                                <goal>flatten</goal>
-                            </goals>
-                            <phase>generate-sources</phase>
-                            <configuration>
-                                <flattenMode>defaults</flattenMode>
-                                <updatePomFile>false</updatePomFile>
-                                <outputDirectory>${bom.directory}/template</outputDirectory>
-                                <flattenedPomFilename>${bom.filename}</flattenedPomFilename>
-                                <pomElements>
-                                    <repositories>flatten</repositories>
-                                    <dependencyManagement>interpolate</dependencyManagement>
-                                </pomElements>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>fill-bom</id>
-                            <phase>process-sources</phase>
-                            <goals>
-                                <goal>copy-resources</goal>
-                            </goals>
-                            <configuration>
-                                <resources>
-                                    <resource>
-                                        <directory>${bom.directory}/template</directory>
-                                        <filtering>true</filtering>
-                                    </resource>
-                                </resources>
-                                <outputDirectory>${bom.directory}</outputDirectory>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>de.eitco.cicd</groupId>
-                    <artifactId>bom-maven-plugin</artifactId>
-                    <version>${bom.maven.plugin.version}</version>
-                    <configuration>
-                        <additionalBoms>
-                            <additionalBom>${bom.path}</additionalBom>
-                        </additionalBoms>
-                        <artifactId>${bom.artifactId}</artifactId>
-                        <targetFile>${bom.artifactPath}</targetFile>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>create</goal>
-                                <goal>attach-signature</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
+                <inherited>false</inherited>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
+                <inherited>false</inherited>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
