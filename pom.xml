@@ -475,6 +475,15 @@
                         </execution>
                     </executions>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <configuration>
+                        <excludes>
+                            <exclude>${bom.artifactId}</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -494,6 +503,16 @@
                 <artifactId>bom-maven-plugin</artifactId>
                 <configuration>
                     <artifactId>eitco-oss-commons-bom</artifactId>
+                </configuration>
+                <inherited>false</inherited>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>eitco-oss-commons-bom</exclude>
+                    </excludes>
                 </configuration>
                 <inherited>false</inherited>
             </plugin>
