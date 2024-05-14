@@ -74,7 +74,8 @@
         <commons.text.version>1.10.0</commons.text.version>
 
         <tika.version>${cmn.tika.version}</tika.version>
-        <cmn.tika.version>2.8.0</cmn.tika.version> <!-- used to avoid conflicts with BOMs using the tika.version property -->
+        <cmn.tika.version>2.8.0
+        </cmn.tika.version> <!-- used to avoid conflicts with BOMs using the tika.version property -->
         <pdfbox.version>2.0.28</pdfbox.version> <!-- must match version used by tika, used by tika pdf module -->
 
         <apache.http.client.version>4.5.14</apache.http.client.version>
@@ -102,6 +103,8 @@
         <bom.directory>${project.build.directory}</bom.directory>
         <bom.filename>dependency-management.xml</bom.filename>
         <bom.path>${bom.directory}/${bom.filename}</bom.path>
+        <bom.artifactFilename>bom.xml</bom.artifactFilename>
+        <bom.artifactPath>${project.build.directory}/${bom.artifactFilename}</bom.artifactPath>
         <bom.artifactId>${project.artifactId}-bom</bom.artifactId>
         <bom.maven.plugin.version>5.0.0-SNAPSHOT</bom.maven.plugin.version>
         <flatten.maven.plugin.version>1.5.0</flatten.maven.plugin.version>
@@ -408,7 +411,6 @@
     </dependencyManagement>
 
 
-
     <build>
         <pluginManagement>
             <plugins>
@@ -466,23 +468,16 @@
                             <additionalBom>${bom.path}</additionalBom>
                         </additionalBoms>
                         <artifactId>${bom.artifactId}</artifactId>
+                        <targetFile>${bom.artifactPath}</targetFile>
                     </configuration>
                     <executions>
                         <execution>
                             <goals>
                                 <goal>create</goal>
+                                <goal>attach-signature</goal>
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-gpg-plugin</artifactId>
-                    <configuration>
-                        <excludes>
-                            <exclude>${bom.artifactId}</exclude>
-                        </excludes>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -503,16 +498,6 @@
                 <artifactId>bom-maven-plugin</artifactId>
                 <configuration>
                     <artifactId>eitco-oss-commons-bom</artifactId>
-                </configuration>
-                <inherited>false</inherited>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>**/eitco-oss-commons-bom.**</exclude>
-                    </excludes>
                 </configuration>
                 <inherited>false</inherited>
             </plugin>
