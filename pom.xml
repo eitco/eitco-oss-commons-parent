@@ -11,7 +11,7 @@
 
     <groupId>de.eitco.commons</groupId>
     <artifactId>eitco-oss-commons-parent</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <developers>
@@ -422,7 +422,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <inherited>false</inherited>
                 <configuration>
-                    <releaseProfiles>deploy-to-central,deploy-bom-to-central</releaseProfiles>
+                    <releaseProfiles>deploy-to-central</releaseProfiles>
                 </configuration>
             </plugin>
             <plugin>
@@ -448,7 +448,7 @@
 
     <profiles>
         <profile>
-            <id>deploy-bom-to-central</id>
+            <id>deploy-to-central</id>
             <activation>
                 <!-- will be activated by release plugin -->
                 <activeByDefault>false</activeByDefault>
@@ -465,8 +465,9 @@
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
                         <extensions>true</extensions>
+                        <inherited>false</inherited>
                         <configuration>
-                            <waitUntil>validated</waitUntil>
+                            <waitUntil>published</waitUntil>
                             <excludeArtifacts>
                                 <artifact>eitco-oss-commons-bom</artifact>
                             </excludeArtifacts>
@@ -479,11 +480,18 @@
                                     <goal>publish</goal>
                                 </goals>
                                 <configuration>
-                                    <waitUntil>published</waitUntil>
+                                    <waitUntil>validated</waitUntil>
                                     <excludeArtifacts>
                                         <artifact>${project.artifactId}</artifact>
                                     </excludeArtifacts>
                                 </configuration>
+                            </execution>
+                            <execution>
+                                <id>default-deploy</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>publish</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
