@@ -421,6 +421,9 @@
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <inherited>false</inherited>
+                <configuration>
+                    <releaseProfiles>deploy-to-central,deploy-bom-to-central</releaseProfiles>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -445,7 +448,7 @@
 
     <profiles>
         <profile>
-            <id>deploy-to-central</id>
+            <id>deploy-bom-to-central</id>
             <activation>
                 <!-- will be activated by release plugin -->
                 <activeByDefault>false</activeByDefault>
