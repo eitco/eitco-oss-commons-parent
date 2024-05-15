@@ -11,7 +11,7 @@
 
     <groupId>de.eitco.commons</groupId>
     <artifactId>eitco-oss-commons-parent</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <developers>
@@ -413,19 +413,19 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <inherited>false</inherited>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>flatten-maven-plugin</artifactId>
-                <inherited>false</inherited>
-            </plugin>
-            <plugin>
-                <groupId>de.eitco.cicd</groupId>
-                <artifactId>bom-maven-plugin</artifactId>
-                <configuration>
-                    <artifactId>eitco-oss-commons-bom</artifactId>
-                </configuration>
-                <inherited>false</inherited>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>flatten-maven-plugin</artifactId>-->
+<!--                <inherited>false</inherited>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>de.eitco.cicd</groupId>-->
+<!--                <artifactId>bom-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <artifactId>eitco-oss-commons-bom</artifactId>-->
+<!--                </configuration>-->
+<!--                <inherited>false</inherited>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
