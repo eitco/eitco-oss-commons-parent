@@ -11,7 +11,7 @@
 
     <groupId>de.eitco.commons</groupId>
     <artifactId>eitco-oss-commons-parent</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <developers>
@@ -467,7 +467,7 @@
                         <extensions>true</extensions>
                         <inherited>false</inherited>
                         <configuration>
-                            <waitUntil>published</waitUntil>
+                            <waitUntil>validated</waitUntil>
                             <excludeArtifacts>
                                 <artifact>eitco-oss-commons-bom</artifact>
                             </excludeArtifacts>
@@ -487,7 +487,7 @@
                                     <goal>publish</goal>
                                 </goals>
                                 <configuration>
-                                    <waitUntil>validated</waitUntil>
+                                    <waitUntil>published</waitUntil>
                                     <excludeArtifacts>
                                         <artifact>${project.artifactId}</artifact>
                                     </excludeArtifacts>
