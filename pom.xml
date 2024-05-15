@@ -474,6 +474,13 @@
                         </configuration>
                         <executions>
                             <execution>
+                                <id>default-deploy</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>publish</goal>
+                                </goals>
+                            </execution>
+                            <execution>
                                 <id>deploy-bom</id>
                                 <phase>deploy</phase>
                                 <goals>
@@ -485,13 +492,6 @@
                                         <artifact>${project.artifactId}</artifact>
                                     </excludeArtifacts>
                                 </configuration>
-                            </execution>
-                            <execution>
-                                <id>default-deploy</id>
-                                <phase>deploy</phase>
-                                <goals>
-                                    <goal>publish</goal>
-                                </goals>
                             </execution>
                         </executions>
                     </plugin>
