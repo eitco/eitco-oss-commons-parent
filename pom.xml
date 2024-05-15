@@ -442,6 +442,15 @@
                 </configuration>
                 <inherited>false</inherited>
             </plugin>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -466,6 +475,13 @@
                             </excludeArtifacts>
                         </configuration>
                         <executions>
+                            <execution>
+                                <id>default-deploy</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>publish</goal>
+                                </goals>
+                            </execution>
                             <execution>
                                 <id>deploy-bom</id>
                                 <phase>deploy</phase>
