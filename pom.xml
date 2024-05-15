@@ -11,7 +11,7 @@
 
     <groupId>de.eitco.commons</groupId>
     <artifactId>eitco-oss-commons-parent</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.3</version>
     <packaging>pom</packaging>
 
     <developers>
@@ -40,7 +40,7 @@
         <url>https://github.com/eitco/eitco-oss-commons-parent.git</url>
         <connection>scm:git:https://github.com/eitco/eitco-oss-commons-parent.git</connection>
         <developerConnection>scm:git:https://github.com/eitco/eitco-oss-commons-parent.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>0.0.3</tag>
   </scm>
 
     <properties>
