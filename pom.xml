@@ -404,6 +404,19 @@
 
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <configuration>
+                        <excludeArtifacts>
+                            <artifact>${bom.artifactId}</artifact>
+                        </excludeArtifacts>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
@@ -413,20 +426,60 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <inherited>false</inherited>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.codehaus.mojo</groupId>-->
-<!--                <artifactId>flatten-maven-plugin</artifactId>-->
-<!--                <inherited>false</inherited>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--                <groupId>de.eitco.cicd</groupId>-->
-<!--                <artifactId>bom-maven-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <artifactId>eitco-oss-commons-bom</artifactId>-->
-<!--                </configuration>-->
-<!--                <inherited>false</inherited>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <inherited>false</inherited>
+            </plugin>
+            <plugin>
+                <groupId>de.eitco.cicd</groupId>
+                <artifactId>bom-maven-plugin</artifactId>
+                <configuration>
+                    <artifactId>eitco-oss-commons-bom</artifactId>
+                </configuration>
+                <inherited>false</inherited>
+            </plugin>
         </plugins>
     </build>
+
+
+    <profiles>
+        <profile>
+            <id>deploy-to-central</id>
+            <activation>
+                <!-- will be activated by release plugin -->
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <configuration>
+                            <waitUntil>validated</waitUntil>
+                            <excludeArtifacts>
+                                <artifact>eitco-oss-commons-bom</artifact>
+                            </excludeArtifacts>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>deploy-bom</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>publish</goal>
+                                </goals>
+                                <configuration>
+                                    <waitUntil>published</waitUntil>
+                                    <excludeArtifacts>
+                                        <artifact>${project.artifactId}</artifact>
+                                    </excludeArtifacts>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
