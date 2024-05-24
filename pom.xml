@@ -437,7 +437,7 @@
             <plugin>
                 <groupId>de.eitco.cicd</groupId>
                 <artifactId>bom-maven-plugin</artifactId>
-                <version>5.0.1-SNAPSHOT</version>
+                <version>5.1.0-SNAPSHOT</version>
                 <configuration>
                     <artifactId>eitco-oss-commons-bom</artifactId>
                 </configuration>
