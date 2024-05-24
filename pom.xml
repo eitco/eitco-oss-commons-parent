@@ -437,10 +437,20 @@
             <plugin>
                 <groupId>de.eitco.cicd</groupId>
                 <artifactId>bom-maven-plugin</artifactId>
+                <version>5.0.1-SNAPSHOT</version>
                 <configuration>
                     <artifactId>eitco-oss-commons-bom</artifactId>
                 </configuration>
                 <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>bom-checksum</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>checksums</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
