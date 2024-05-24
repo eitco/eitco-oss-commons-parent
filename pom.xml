@@ -414,6 +414,29 @@
                             <artifact>${bom.artifactId}</artifact>
                         </excludeArtifacts>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <id>deploy-bom</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>publish</goal>
+                            </goals>
+                            <configuration>
+                                <waitUntil>validated</waitUntil>
+                                <excludeArtifacts>
+                                    <artifact>${project.artifactId}</artifact>
+                                </excludeArtifacts>
+                            </configuration>
+                            <inherited>false</inherited>
+                        </execution>
+                        <execution>
+                            <id>default-deploy</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>publish</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -421,9 +444,6 @@
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <inherited>false</inherited>
-                <configuration>
-                    <releaseProfiles>deploy-to-central</releaseProfiles>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -438,9 +458,6 @@
                 <groupId>de.eitco.cicd</groupId>
                 <artifactId>bom-maven-plugin</artifactId>
                 <version>5.1.0</version>
-                <configuration>
-                    <artifactId>eitco-oss-commons-bom</artifactId>
-                </configuration>
                 <inherited>false</inherited>
             </plugin>
         </plugins>
@@ -455,6 +472,24 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>de.eitco.cicd</groupId>
+                            <artifactId>bom-maven-plugin</artifactId>
+                            <version>5.1.0</version>
+                            <executions>
+                                <execution>
+                                    <id>create-bom-checksums</id>
+                                    <phase>prepare-package</phase>
+                                    <goals>
+                                        <goal>checksums</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
                 <plugins>
                     <plugin>
                         <artifactId>maven-deploy-plugin</artifactId>
@@ -463,56 +498,8 @@
                         </configuration>
                     </plugin>
                     <plugin>
-                        <groupId>de.eitco.cicd</groupId>
-                        <artifactId>bom-maven-plugin</artifactId>
-                        <version>5.1.0</version>
-                        <configuration>
-                            <artifactId>eitco-oss-commons-bom</artifactId>
-                        </configuration>
-                        <inherited>false</inherited>
-                        <executions>
-                            <execution>
-                                <id>bom-checksum</id>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>checksums</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
-                        <extensions>true</extensions>
-                        <inherited>false</inherited>
-                        <configuration>
-                            <waitUntil>validated</waitUntil>
-                            <excludeArtifacts>
-                                <artifact>eitco-oss-commons-bom</artifact>
-                            </excludeArtifacts>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>default-deploy</id>
-                                <phase>deploy</phase>
-                                <goals>
-                                    <goal>publish</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>deploy-bom</id>
-                                <phase>deploy</phase>
-                                <goals>
-                                    <goal>publish</goal>
-                                </goals>
-                                <configuration>
-                                    <waitUntil>published</waitUntil>
-                                    <excludeArtifacts>
-                                        <artifact>${project.artifactId}</artifact>
-                                    </excludeArtifacts>
-                                </configuration>
-                            </execution>
-                        </executions>
                     </plugin>
                 </plugins>
             </build>
