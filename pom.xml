@@ -444,6 +444,9 @@
         <plugins>
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <arguments> -X </arguments>
+                </configuration>
                 <inherited>false</inherited>
             </plugin>
             <plugin>
