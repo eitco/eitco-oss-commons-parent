@@ -423,6 +423,7 @@
                             </goals>
                             <configuration>
                                 <waitUntil>validated</waitUntil>
+                                <deploymentName>${project.groupId}:${bom.artifactId}:${project.version}</deploymentName>
                                 <excludeArtifacts>
                                     <artifact>${project.artifactId}</artifact>
                                 </excludeArtifacts>
