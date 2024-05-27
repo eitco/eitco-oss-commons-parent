@@ -101,7 +101,7 @@
         <xnio.version>3.8.8.Final</xnio.version>
         <jolokia.version>1.7.2</jolokia.version>
 
-
+        <bom.maven.plugin.version>5.1.1-SNAPSHOT</bom.maven.plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -403,6 +403,13 @@
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.4.0</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>
@@ -414,22 +421,25 @@
                         <excludeArtifacts>
                             <artifact>${bom.artifactId}</artifact>
                         </excludeArtifacts>
-                        <skipPublishing>true</skipPublishing>
                     </configuration>
                     <executions>
                         <execution>
-                            <id>deploy-bom</id>
-                            <phase>deploy</phase>
+                            <id>stage-bom</id>
+                            <phase>install</phase>
                             <goals>
                                 <goal>publish</goal>
                             </goals>
                             <configuration>
-                                <waitUntil>validated</waitUntil>
+                                <!--                                <waitUntil>validated</waitUntil>-->
+                                <skipPublishing>true</skipPublishing>
                                 <deploymentName>${project.groupId}:${bom.artifactId}:${project.version}</deploymentName>
                                 <excludeArtifacts>
                                     <artifact>${project.artifactId}</artifact>
                                 </excludeArtifacts>
-                                <skipPublishing>true</skipPublishing>
+                                <forcedOutputDirectory>${project.build.directory}/bom-central-publishing
+                                </forcedOutputDirectory>
+                                <forcedStagingDirectory>${project.build.directory}/bom-central-staging
+                                </forcedStagingDirectory>
                             </configuration>
                             <inherited>false</inherited>
                         </execution>
@@ -440,7 +450,6 @@
                                 <goal>publish</goal>
                             </goals>
                             <configuration>
-                                <skipPublishing>true</skipPublishing>
                             </configuration>
                         </execution>
                     </executions>
@@ -452,7 +461,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
                     <arguments>-X</arguments>
-                    <releaseProfiles>deploy-to-central,deploy-bom-to-central</releaseProfiles>
+                    <releaseProfiles>deploy-to-central</releaseProfiles>
                 </configuration>
                 <inherited>false</inherited>
             </plugin>
@@ -464,11 +473,29 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
                 <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>generate-bom</id>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <flattenMode>ossrh</flattenMode>
+                            <updatePomFile>false</updatePomFile>
+                            <outputDirectory>${bom.directory}/template</outputDirectory>
+                            <flattenedPomFilename>${bom.filename}</flattenedPomFilename>
+                            <pomElements>
+                                <repositories>flatten</repositories>
+                                <dependencyManagement>interpolate</dependencyManagement>
+                            </pomElements>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>de.eitco.cicd</groupId>
                 <artifactId>bom-maven-plugin</artifactId>
-                <version>5.1.0</version>
                 <inherited>false</inherited>
             </plugin>
         </plugins>
@@ -477,7 +504,7 @@
 
     <profiles>
         <profile>
-            <id>deploy-bom-to-central</id>
+            <id>deploy-to-central</id>
             <activation>
                 <!-- will be activated by release plugin -->
                 <activeByDefault>false</activeByDefault>
@@ -488,7 +515,6 @@
                         <plugin>
                             <groupId>de.eitco.cicd</groupId>
                             <artifactId>bom-maven-plugin</artifactId>
-                            <version>5.1.0</version>
                             <executions>
                                 <execution>
                                     <id>create-bom-checksums</id>
@@ -511,6 +537,74 @@
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-clean-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>clean-deployment</id>
+                                <goals>
+                                    <goal>clean</goal>
+                                </goals>
+                                <phase>install</phase>
+                                <configuration>
+                                    <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                                    <filesets>
+                                        <fileset>
+                                            <directory>${project.build.directory}/bom-central-publishing</directory>
+                                        </fileset>
+                                        <fileset>
+                                            <directory>${project.build.directory}/bom-central-staging</directory>
+                                            <includes>
+                                                <include>**/maven-metadata-central-staging.xml</include>
+                                            </includes>
+                                        </fileset>
+                                    </filesets>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>deployment/descriptor.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                                <phase>install</phase> <!-- bind to the packaging phase -->
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>wagon-maven-plugin</artifactId>
+                        <version>2.0.2</version>
+                        <executions>
+                            <execution>
+                                <id>upload-bom</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>upload-single</goal>
+                                </goals>
+                                <configuration>
+                                    <serverId>ossrh</serverId>
+                                    <fromFile>
+                                        ${project.build.directory}/${project.artifactId}-${project.version}-deployment.zip
+                                    </fromFile>
+                                    <url>
+                                        https://central.sonatype.com/api/v1/publisher/upload?name=${project.groupId}:${bom.artifactId}:${project.version}&amp;publishingType=AUTOMATIC
+                                    </url>
+                                </configuration>
+                                <inherited>false</inherited>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
