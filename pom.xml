@@ -596,8 +596,8 @@
                         </configuration>
                         <executions>
                             <execution>
-                                <id>make-assembly</id> <!-- this is used for inheritance merges -->
-                                <phase>install</phase> <!-- bind to the packaging phase -->
+                                <id>make-assembly</id>
+                                <phase>install</phase>
                                 <goals>
                                     <goal>single</goal>
                                 </goals>
