@@ -413,6 +413,7 @@
                         <excludeArtifacts>
                             <artifact>${bom.artifactId}</artifact>
                         </excludeArtifacts>
+                            <skipPublishing>true</skipPublishing>
                     </configuration>
                     <executions>
                         <execution>
@@ -505,9 +506,6 @@
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
-                        <configuration>
-                            <skipPublishing>true</skipPublishing>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
