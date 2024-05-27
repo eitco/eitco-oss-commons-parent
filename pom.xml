@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -40,8 +41,8 @@
         <url>https://github.com/eitco/eitco-oss-commons-parent.git</url>
         <connection>scm:git:https://github.com/eitco/eitco-oss-commons-parent.git</connection>
         <developerConnection>scm:git:https://github.com/eitco/eitco-oss-commons-parent.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <properties>
         <spring.version>6.1.4</spring.version>
@@ -413,7 +414,7 @@
                         <excludeArtifacts>
                             <artifact>${bom.artifactId}</artifact>
                         </excludeArtifacts>
-                            <skipPublishing>true</skipPublishing>
+                        <skipPublishing>true</skipPublishing>
                     </configuration>
                     <executions>
                         <execution>
@@ -428,6 +429,7 @@
                                 <excludeArtifacts>
                                     <artifact>${project.artifactId}</artifact>
                                 </excludeArtifacts>
+                                <skipPublishing>true</skipPublishing>
                             </configuration>
                             <inherited>false</inherited>
                         </execution>
@@ -437,6 +439,9 @@
                             <goals>
                                 <goal>publish</goal>
                             </goals>
+                            <configuration>
+                                <skipPublishing>true</skipPublishing>
+                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
@@ -446,7 +451,7 @@
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
-                    <arguments> -X </arguments>
+                    <arguments>-X</arguments>
                     <releaseProfiles>deploy-to-central,deploy-bom-to-central</releaseProfiles>
                 </configuration>
                 <inherited>false</inherited>
