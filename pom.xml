@@ -101,7 +101,7 @@
         <xnio.version>3.8.8.Final</xnio.version>
         <jolokia.version>1.7.2</jolokia.version>
 
-        <bom.maven.plugin.version>5.1.1-SNAPSHOT</bom.maven.plugin.version>
+        <bom.maven.plugin.version>5.1.0</bom.maven.plugin.version>
     </properties>
 
     <dependencyManagement>
