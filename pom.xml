@@ -470,7 +470,6 @@
                             <excludeArtifacts>
                                 <artifact>eitco-oss-commons-bom</artifact>
                             </excludeArtifacts>
-                            <deploymentName>${project.groupId}:eitco-oss-commons-bom:${project.version}</deploymentName>
                         </configuration>
                         <executions>
                             <execution>
