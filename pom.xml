@@ -446,6 +446,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
                     <arguments> -X </arguments>
+                    <releaseProfiles>deploy-to-central,deploy-bom-to-central</releaseProfiles>
                 </configuration>
                 <inherited>false</inherited>
             </plugin>
@@ -470,7 +471,7 @@
 
     <profiles>
         <profile>
-            <id>deploy-to-central</id>
+            <id>deploy-bom-to-central</id>
             <activation>
                 <!-- will be activated by release plugin -->
                 <activeByDefault>false</activeByDefault>
@@ -504,6 +505,9 @@
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
+                        <configuration>
+                            <skipPublishing>true</skipPublishing>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
