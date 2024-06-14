@@ -45,19 +45,19 @@
     </scm>
 
     <properties>
-        <spring.version>6.1.4</spring.version>
-        <spring.boot.version>3.2.3</spring.boot.version>
-        <spring-security.version>6.2.2</spring-security.version>
+        <spring.version>6.1.6</spring.version>
+        <spring.boot.version>3.2.5</spring.boot.version>
+        <spring-security.version>6.2.4</spring-security.version>
         <spring-security-oauth2.version>2.5.2.RELEASE</spring-security-oauth2.version>
-        <spring.cloud.version>2023.0.0</spring.cloud.version>
+        <spring.cloud.version>2023.0.1</spring.cloud.version>
         <codecentric.spring.version>3.1.8</codecentric.spring.version>
         <spring-web.version>${spring.version}</spring-web.version>
         <spring-asciidoctor-extensions.version>0.6.1</spring-asciidoctor-extensions.version>
 
         <spring-boot-starter-jooq.version>${spring.boot.version}</spring-boot-starter-jooq.version>
 
-        <jooq.version>3.18.11</jooq.version>
-        <kotlin.version>1.9.22</kotlin.version>
+        <jooq.version>3.18.14</jooq.version>
+        <kotlin.version>1.9.23</kotlin.version>
 
         <jackson.version>2.15.4</jackson.version>
         <xml.maven.plugin.version>1.1.0</xml.maven.plugin.version>
@@ -75,8 +75,7 @@
         <commons.text.version>1.10.0</commons.text.version>
 
         <tika.version>${cmn.tika.version}</tika.version>
-        <cmn.tika.version>2.8.0
-        </cmn.tika.version> <!-- used to avoid conflicts with BOMs using the tika.version property -->
+        <cmn.tika.version>2.8.0</cmn.tika.version> <!-- used to avoid conflicts with BOMs using the tika.version property -->
         <pdfbox.version>2.0.28</pdfbox.version> <!-- must match version used by tika, used by tika pdf module -->
 
         <apache.http.client.version>4.5.14</apache.http.client.version>
@@ -84,7 +83,7 @@
         <com.google.guava.guava.version>31.1-jre</com.google.guava.guava.version>
         <com.sun.xml.bind.jaxb-impl.version>2.4.0-b180830.0438</com.sun.xml.bind.jaxb-impl.version>
         <caffeine.version>3.1.8</caffeine.version>
-        <org.postgresql.version>42.6.1</org.postgresql.version>
+        <org.postgresql.version>42.6.2</org.postgresql.version>
         <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <org.camunda.bpm.springboot.webapp.version>3.2.1</org.camunda.bpm.springboot.webapp.version>
 
