@@ -28,7 +28,7 @@
             </properties>
         </ref>
         <ref type="branch">
-            <pattern>master</pattern>
+            <pattern>main</pattern>
             <version>${version}</version>
             <properties>
                 <version.original>${version}</version.original>
