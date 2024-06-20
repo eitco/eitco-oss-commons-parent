@@ -109,6 +109,20 @@
         <bom.artifactId>${project.artifactId}-bom</bom.artifactId>
         <flatten.maven.plugin.version>1.5.0</flatten.maven.plugin.version>
 
+        <!-- jackson versions -->
+        <jackson.version>2.17.1</jackson.version>
+        <jackson.version.annotations>${jackson.version}</jackson.version.annotations>
+        <jackson.version.core>${jackson.version}</jackson.version.core>
+        <jackson.version.databind>${jackson.version}</jackson.version.databind>
+        <jackson.version.dataformat>${jackson.version}</jackson.version.dataformat>
+        <jackson.version.datatype>${jackson.version}</jackson.version.datatype>
+        <jackson.version.jaxrs>${jackson.version}</jackson.version.jaxrs>
+        <jackson.version.jakarta.rs>${jackson.version}</jackson.version.jakarta.rs>
+        <jackson.version.jacksonjr>${jackson.version}</jackson.version.jacksonjr>
+        <jackson.version.module>${jackson.version}</jackson.version.module>
+        <jackson.version.module.kotlin>${jackson.version.module}</jackson.version.module.kotlin>
+        <jackson.version.module.scala>${jackson.version.module}</jackson.version.module.scala>
+
     </properties>
 
     <dependencyManagement>
@@ -454,6 +468,32 @@
         </pluginManagement>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.6.1</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>download-hard-linked-boms</id>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <outputDirectory>${bom.directory}/template</outputDirectory>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.fasterxml.jackson</groupId>
+                                    <artifactId>jackson-bom</artifactId>
+                                    <version>${jackson.version}</version>
+                                    <type>pom</type>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <inherited>false</inherited>
             </plugin>
@@ -469,6 +509,12 @@
             <plugin>
                 <groupId>de.eitco.cicd</groupId>
                 <artifactId>bom-maven-plugin</artifactId>
+                <configuration>
+                    <additionalBoms>
+                        <additionalBom>${bom.directory}/jackson-bom-${jackson.version}.pom</additionalBom>
+                        <additionalBom>${bom.path}</additionalBom>
+                    </additionalBoms>
+                </configuration>
                 <inherited>false</inherited>
             </plugin>
         </plugins>
