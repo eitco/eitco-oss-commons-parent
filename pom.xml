@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.eitco</groupId>
         <artifactId>eitco-oss-parent</artifactId>
-        <version>0.0.8</version>
+        <version>0.0.9-SNAPSHOT</version>
     </parent>
 
 
@@ -65,7 +65,6 @@
         <jmeter.maven.plugin.version>3.0.0</jmeter.maven.plugin.version>
         <apache.jmeter.version>5.0</apache.jmeter.version>
         <commons-codec.version>1.16.1</commons-codec.version>
-        <commons.io.version>2.11.0</commons.io.version>
         <commons.lang3.version>3.13.0</commons.lang3.version>
         <commons.pool.version>1.6</commons.pool.version>
         <commons.text.version>1.10.0</commons.text.version>
@@ -87,7 +86,6 @@
         <infinispan-spring-boot-starter-embedded.version>13.0.11.Final</infinispan-spring-boot-starter-embedded.version>
         <infinispan_.version>13.0.11.Final</infinispan_.version>
         <confluence.reporting.maven.plugin.version>6.7.1</confluence.reporting.maven.plugin.version>
-        <commons.compress.version>1.22</commons.compress.version>
         <xstream.version>1.4.20</xstream.version>
         <snakeyaml.version>2.2</snakeyaml.version>
         <jettison.version>1.5.1</jettison.version>
@@ -250,11 +248,6 @@
                 <version>${httpclient5.version}</version>
             </dependency>
             <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>${commons.io.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>${commons-codec.version}</version>
@@ -263,11 +256,6 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.lang3.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-compress</artifactId>
-                <version>${commons.compress.version}</version>
             </dependency>
             <!-- deprecated -->
             <dependency>
