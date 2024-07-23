@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.eitco.cicd</groupId>
         <artifactId>eitco-oss-parent</artifactId>
-        <version>0.0.11</version>
+        <version>0.0.14-SNAPSHOT</version>
     </parent>
 
 
@@ -104,7 +104,6 @@
         <flatten.maven.plugin.version>1.5.0</flatten.maven.plugin.version>
 
         <!-- jackson versions -->
-        <jackson.version>2.17.1</jackson.version>
         <jackson.version.annotations>${jackson.version}</jackson.version.annotations>
         <jackson.version.core>${jackson.version}</jackson.version.core>
         <jackson.version.databind>${jackson.version}</jackson.version.databind>
