@@ -85,6 +85,7 @@
 
         <swagger-annotations.version>1.5.20</swagger-annotations.version>
         <swagger.version>5.3.1</swagger.version>
+        <webjars-locator.version>0.52</webjars-locator.version>
         <liquibase.version>4.27.0</liquibase.version>
         <confluence.reporting.maven.plugin.version>6.7.1</confluence.reporting.maven.plugin.version>
         <xstream.version>1.4.20</xstream.version>
@@ -314,6 +315,11 @@
                 <groupId>org.webjars</groupId>
                 <artifactId>swagger-ui</artifactId>
                 <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.webjars</groupId>
+                <artifactId>webjars-locator</artifactId>
+                <version>${webjars-locator.version}</version>
             </dependency>
 
             <dependency>
