@@ -48,7 +48,7 @@
         <spring.boot.version>3.4.0</spring.boot.version>
         <spring-security.version>6.4.1</spring-security.version>
         <spring-security-oauth2.version>2.5.2.RELEASE</spring-security-oauth2.version>
-        <spring.cloud.version>2023.0.3</spring.cloud.version>
+        <spring.cloud.version>2024.0.0</spring.cloud.version>
         <codecentric.spring.version>3.3.6</codecentric.spring.version>
         <spring-web.version>${spring.version}</spring-web.version>
         <spring-asciidoctor-extensions.version>0.6.1</spring-asciidoctor-extensions.version>
