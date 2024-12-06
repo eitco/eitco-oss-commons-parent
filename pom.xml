@@ -5,9 +5,8 @@
     <parent>
         <groupId>de.eitco.cicd</groupId>
         <artifactId>eitco-oss-parent</artifactId>
-        <version>ECR-1472-SNAPSHOT</version>
+        <version>0.0.17</version>
     </parent>
-
 
     <groupId>de.eitco.commons</groupId>
     <artifactId>eitco-oss-commons-parent</artifactId>
