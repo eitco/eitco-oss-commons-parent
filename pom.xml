@@ -44,7 +44,7 @@
 
     <properties>
         <spring.version>6.2.3</spring.version>
-        <spring.boot.version>3.4.3</spring.boot.version>
+        <spring.boot.version>3.4.5</spring.boot.version>
         <spring-security.version>6.4.3</spring-security.version>
         <spring-security-oauth2.version>2.5.2.RELEASE</spring-security-oauth2.version>
         <spring.cloud.version>2024.0.0</spring.cloud.version>
