@@ -98,7 +98,7 @@
         <freemarker.version>2.3.34</freemarker.version>
 
         <!-- for automatic bom creation -->
-        <bom.maven.plugin.version>5.1.1</bom.maven.plugin.version>
+        <bom.maven.plugin.version>5.1.4</bom.maven.plugin.version>
         <bom.directory>${project.build.directory}</bom.directory>
         <bom.filename>dependency-management.xml</bom.filename>
         <bom.path>${bom.directory}/${bom.filename}</bom.path>
