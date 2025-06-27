@@ -10,7 +10,7 @@
 
     <groupId>de.eitco.commons</groupId>
     <artifactId>eitco-oss-commons-parent</artifactId>
-    <version>0.0.19</version>
+    <version>0.0.20-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>eitco open source commons parent pom</name>
 
@@ -40,7 +40,7 @@
         <url>https://github.com/eitco/eitco-oss-commons-parent.git</url>
         <connection>scm:git:https://github.com/eitco/eitco-oss-commons-parent.git</connection>
         <developerConnection>scm:git:https://github.com/eitco/eitco-oss-commons-parent.git</developerConnection>
-        <tag>0.0.19</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
