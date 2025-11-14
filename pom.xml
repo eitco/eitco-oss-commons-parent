@@ -168,6 +168,10 @@
                         <groupId>com.fasterxml.jackson</groupId>
                         <artifactId>jackson-bom</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>tools.jackson</groupId>
+                        <artifactId>jackson-bom</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
@@ -497,7 +501,7 @@
                             <outputDirectory>${bom.directory}/template</outputDirectory>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>com.fasterxml.jackson</groupId>
+                                    <groupId>tools.jackson</groupId>
                                     <artifactId>jackson-bom</artifactId>
                                     <version>${jackson.version}</version>
                                     <type>pom</type>
