@@ -108,7 +108,7 @@
         <flatten.maven.plugin.version>1.5.0</flatten.maven.plugin.version>
 
         <!-- jackson versions -->
-        <jackson.version.annotations>${jackson.version}</jackson.version.annotations>
+        <jackson.version.annotations>${jackson-annotations-version}</jackson.version.annotations>
         <jackson.version.core>${jackson.version}</jackson.version.core>
         <jackson.version.databind>${jackson.version}</jackson.version.databind>
         <jackson.version.dataformat>${jackson.version}</jackson.version.dataformat>
