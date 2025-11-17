@@ -72,7 +72,7 @@
         <commons.pool.version>1.6</commons.pool.version>
         <commons.text.version>1.10.0</commons.text.version>
 
-        <tika.version>2.8.0</tika.version>
+        <tika.version>3.2.3</tika.version>
 
         <apache.http.client.version>4.5.14</apache.http.client.version>
         <httpclient5.version>5.5.1</httpclient5.version>
@@ -143,6 +143,11 @@
                     <exclusion>
                         <groupId>org.apache.tika</groupId>
                         <artifactId>tika-parser-pkg-module</artifactId>
+                    </exclusion>
+                    <!-- Excluded because of version mismatch in Jackson dependencies. -->
+                    <exclusion>
+                        <groupId>org.apache.tika</groupId>
+                        <artifactId>tika-parser-cad-module</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
