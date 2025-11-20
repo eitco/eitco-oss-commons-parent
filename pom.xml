@@ -109,14 +109,14 @@
 
         <!-- jackson versions -->
         <jackson.version.annotations>${jackson-annotations-version}</jackson.version.annotations>
-        <jackson.version.core>${jackson.version}</jackson.version.core>
-        <jackson.version.databind>${jackson.version}</jackson.version.databind>
-        <jackson.version.dataformat>${jackson.version}</jackson.version.dataformat>
-        <jackson.version.datatype>${jackson.version}</jackson.version.datatype>
-        <jackson.version.jaxrs>${jackson.version}</jackson.version.jaxrs>
-        <jackson.version.jakarta.rs>${jackson.version}</jackson.version.jakarta.rs>
-        <jackson.version.jacksonjr>${jackson.version}</jackson.version.jacksonjr>
-        <jackson.version.module>${jackson.version}</jackson.version.module>
+        <jackson.version.core>${jackson-2.version}</jackson.version.core>
+        <jackson.version.databind>${jackson-2.version}</jackson.version.databind>
+        <jackson.version.dataformat>${jackson-2.version}</jackson.version.dataformat>
+        <jackson.version.datatype>${jackson-2.version}</jackson.version.datatype>
+        <jackson.version.jaxrs>${jackson-2.version}</jackson.version.jaxrs>
+        <jackson.version.jakarta.rs>${jackson-2.version}</jackson.version.jakarta.rs>
+        <jackson.version.jacksonjr>${jackson-2.version}</jackson.version.jacksonjr>
+        <jackson.version.module>${jackson-2.version}</jackson.version.module>
         <jackson.version.module.kotlin>${jackson.version.module}</jackson.version.module.kotlin>
         <jackson.version.module.scala>${jackson.version.module}</jackson.version.module.scala>
 
@@ -506,9 +506,9 @@
                             <outputDirectory>${bom.directory}/template</outputDirectory>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>tools.jackson</groupId>
+                                    <groupId>com.fasterxml.jackson</groupId>
                                     <artifactId>jackson-bom</artifactId>
-                                    <version>${jackson.version}</version>
+                                    <version>${jackson-2.version}</version>
                                     <type>pom</type>
                                 </artifactItem>
                             </artifactItems>
@@ -534,7 +534,7 @@
                 <artifactId>bom-maven-plugin</artifactId>
                 <configuration>
                     <additionalBoms>
-                        <additionalBom>${bom.directory}/jackson-bom-${jackson.version}.pom</additionalBom>
+                        <additionalBom>${bom.directory}/jackson-bom-${jackson-2.version}.pom</additionalBom>
                         <additionalBom>${bom.path}</additionalBom>
                     </additionalBoms>
                 </configuration>
