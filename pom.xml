@@ -44,11 +44,11 @@
     </scm>
 
     <properties>
-        <spring.version>7.0.2</spring.version>
-        <spring.boot.version>4.0.1</spring.boot.version>
+        <spring.version>7.0.3</spring.version>
+        <spring.boot.version>4.0.2</spring.boot.version>
         <spring-security.version>7.0.2</spring-security.version>
         <spring-security-oauth2.version>2.5.2.RELEASE</spring-security-oauth2.version>
-        <spring.cloud.version>2025.1.0</spring.cloud.version>
+        <spring.cloud.version>2025.1.1</spring.cloud.version>
         <codecentric.spring.version>3.5.6</codecentric.spring.version>
         <spring-web.version>${spring.version}</spring-web.version>
         <spring-asciidoctor-extensions.version>0.6.1</spring-asciidoctor-extensions.version>
@@ -75,11 +75,11 @@
         <tika.version>3.2.3</tika.version>
 
         <apache.http.client.version>4.5.14</apache.http.client.version>
-        <httpclient5.version>5.5.1</httpclient5.version>
+        <httpclient5.version>5.5.2</httpclient5.version>
         <com.google.guava.guava.version>31.1-jre</com.google.guava.guava.version>
         <com.sun.xml.bind.jaxb-impl.version>2.4.0-b180830.0438</com.sun.xml.bind.jaxb-impl.version>
         <caffeine.version>3.2.3</caffeine.version>
-        <org.postgresql.version>42.7.8</org.postgresql.version>
+        <org.postgresql.version>42.7.9</org.postgresql.version>
         <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <org.camunda.bpm.springboot.webapp.version>3.2.1</org.camunda.bpm.springboot.webapp.version>
 
