@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.eitco.cicd</groupId>
         <artifactId>eitco-oss-parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.2-SNAPSHOT</version>
     </parent>
 
     <groupId>de.eitco.commons</groupId>
@@ -44,12 +44,12 @@
     </scm>
 
     <properties>
-        <spring.version>7.0.3</spring.version>
-        <spring.boot.version>4.0.2</spring.boot.version>
-        <spring-security.version>7.0.2</spring-security.version>
+        <spring.version>7.0.6</spring.version>
+        <spring.boot.version>4.0.4</spring.boot.version>
+        <spring-security.version>7.0.4</spring-security.version>
         <spring-security-oauth2.version>2.5.2.RELEASE</spring-security-oauth2.version>
         <spring.cloud.version>2025.1.1</spring.cloud.version>
-        <codecentric.spring.version>4.0.0</codecentric.spring.version>
+        <codecentric.spring.version>4.0.2</codecentric.spring.version>
         <spring-web.version>${spring.version}</spring-web.version>
         <spring-asciidoctor-extensions.version>0.6.1</spring-asciidoctor-extensions.version>
 
@@ -58,7 +58,7 @@
         <!-- See https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases -->
         <opentelemetry.instrumentation.version>2.21.0</opentelemetry.instrumentation.version>
 
-        <jooq.version>3.19.29</jooq.version>
+        <jooq.version>3.19.30</jooq.version>
 
         <xml.maven.plugin.version>1.1.0</xml.maven.plugin.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
@@ -79,14 +79,14 @@
         <com.google.guava.guava.version>31.1-jre</com.google.guava.guava.version>
         <com.sun.xml.bind.jaxb-impl.version>2.4.0-b180830.0438</com.sun.xml.bind.jaxb-impl.version>
         <caffeine.version>3.2.3</caffeine.version>
-        <org.postgresql.version>42.7.9</org.postgresql.version>
+        <org.postgresql.version>42.7.10</org.postgresql.version>
         <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <org.camunda.bpm.springboot.webapp.version>3.2.1</org.camunda.bpm.springboot.webapp.version>
 
         <swagger-annotations.version>1.5.20</swagger-annotations.version>
         <swagger.version>5.3.1</swagger.version>
         <webjars-locator.version>0.59</webjars-locator.version>
-        <liquibase.version>5.0.1</liquibase.version>
+        <liquibase.version>5.0.2</liquibase.version>
         <confluence.reporting.maven.plugin.version>6.7.1</confluence.reporting.maven.plugin.version>
         <xstream.version>1.4.21</xstream.version>
         <snakeyaml.version>2.5</snakeyaml.version>
