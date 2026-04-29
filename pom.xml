@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.eitco.cicd</groupId>
         <artifactId>eitco-oss-parent</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </parent>
 
     <groupId>de.eitco.commons</groupId>
@@ -44,9 +44,9 @@
     </scm>
 
     <properties>
-        <spring.version>7.0.6</spring.version>
-        <spring.boot.version>4.0.4</spring.boot.version>
-        <spring-security.version>7.0.4</spring-security.version>
+        <spring.version>7.0.7</spring.version>
+        <spring.boot.version>4.0.6</spring.boot.version>
+        <spring-security.version>7.0.5</spring-security.version>
         <spring-security-oauth2.version>2.5.2.RELEASE</spring-security-oauth2.version>
         <spring.cloud.version>2025.1.1</spring.cloud.version>
         <codecentric.spring.version>4.0.2</codecentric.spring.version>
@@ -58,7 +58,7 @@
         <!-- See https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases -->
         <opentelemetry.instrumentation.version>2.21.0</opentelemetry.instrumentation.version>
 
-        <jooq.version>3.19.30</jooq.version>
+        <jooq.version>3.19.32</jooq.version>
 
         <xml.maven.plugin.version>1.1.0</xml.maven.plugin.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
