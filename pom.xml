@@ -53,6 +53,9 @@
         <spring-web.version>${spring.version}</spring-web.version>
         <spring-asciidoctor-extensions.version>0.6.1</spring-asciidoctor-extensions.version>
 
+        <!-- TODO remove after next spring boot update -->
+        <tomcat.version>11.0.22</tomcat.version>
+
         <spring-boot-starter-jooq.version>${spring.boot.version}</spring-boot-starter-jooq.version>
 
         <!-- See https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases -->
@@ -158,6 +161,44 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- TODO remove tomcat dependencies after next spring boot update -->
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-annotations-api</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-jdbc</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-jsp-api</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-jasper</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-websocket</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
