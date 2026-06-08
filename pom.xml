@@ -96,6 +96,7 @@
         <jettison.version>1.5.1</jettison.version>
         <xnio.version>3.8.17.Final</xnio.version>
         <jolokia.version>1.7.2</jolokia.version>
+        <netty-bom.version>4.2.15.Final</netty-bom.version>
 
         <gson-version>2.13.2</gson-version>
         <freemarker.version>2.3.34</freemarker.version>
@@ -158,6 +159,13 @@
                 <groupId>org.apache.tika</groupId>
                 <artifactId>tika-bom</artifactId>
                 <version>${tika.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>${netty-bom.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
