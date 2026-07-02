@@ -121,10 +121,18 @@
         <jackson.version.module.kotlin>${jackson.version.module}</jackson.version.module.kotlin>
         <jackson.version.module.scala>${jackson.version.module}</jackson.version.module.scala>
 
+        <bouncycastle-bom.version>1.81.1</bouncycastle-bom.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bc-jdk18on-bom</artifactId>
+                <version>${bouncycastle-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
