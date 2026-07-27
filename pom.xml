@@ -5,12 +5,12 @@
     <parent>
         <groupId>de.eitco.cicd</groupId>
         <artifactId>eitco-oss-parent</artifactId>
-        <version>1.0.5</version>
+        <version>1.1.0</version>
     </parent>
 
     <groupId>de.eitco.commons</groupId>
     <artifactId>eitco-oss-commons-parent</artifactId>
-    <version>1.0.6-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>eitco open source commons parent pom</name>
 
@@ -45,20 +45,20 @@
 
     <properties>
         <spring.version>7.0.8</spring.version>
-        <spring.boot.version>4.0.7</spring.boot.version>
-        <spring-security.version>7.0.6</spring-security.version>
+        <spring.boot.version>4.1.0</spring.boot.version>
+        <spring-security.version>7.1.0</spring-security.version>
         <spring-security-oauth2.version>2.5.2.RELEASE</spring-security-oauth2.version>
         <spring.cloud.version>2025.1.2</spring.cloud.version>
-        <codecentric.spring.version>4.0.2</codecentric.spring.version>
+        <codecentric.spring.version>4.1.2</codecentric.spring.version>
         <spring-web.version>${spring.version}</spring-web.version>
         <spring-asciidoctor-extensions.version>0.6.1</spring-asciidoctor-extensions.version>
 
         <spring-boot-starter-jooq.version>${spring.boot.version}</spring-boot-starter-jooq.version>
 
         <!-- See https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases -->
-        <opentelemetry.instrumentation.version>2.21.0</opentelemetry.instrumentation.version>
+        <opentelemetry.instrumentation.version>2.28.1</opentelemetry.instrumentation.version>
 
-        <jooq.version>3.19.32</jooq.version>
+        <jooq.version>3.21.5</jooq.version>
 
         <xml.maven.plugin.version>1.1.0</xml.maven.plugin.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
@@ -67,15 +67,15 @@
 
         <jmeter.maven.plugin.version>3.0.0</jmeter.maven.plugin.version>
         <apache.jmeter.version>5.0</apache.jmeter.version>
-        <commons-codec.version>1.19.0</commons-codec.version>
-        <commons.lang3.version>3.19.0</commons.lang3.version>
+        <commons-codec.version>1.21.0</commons-codec.version>
+        <commons.lang3.version>3.20.0</commons.lang3.version>
         <commons.pool.version>1.6</commons.pool.version>
         <commons.text.version>1.10.0</commons.text.version>
 
         <tika.version>3.2.3</tika.version>
 
         <apache.http.client.version>4.5.14</apache.http.client.version>
-        <httpclient5.version>5.5.2</httpclient5.version>
+        <httpclient5.version>5.6.1</httpclient5.version>
         <com.google.guava.guava.version>31.1-jre</com.google.guava.guava.version>
         <com.sun.xml.bind.jaxb-impl.version>2.4.0-b180830.0438</com.sun.xml.bind.jaxb-impl.version>
         <caffeine.version>3.2.4</caffeine.version>
@@ -89,7 +89,7 @@
         <liquibase.version>5.0.3</liquibase.version>
         <confluence.reporting.maven.plugin.version>6.7.1</confluence.reporting.maven.plugin.version>
         <xstream.version>1.4.21</xstream.version>
-        <snakeyaml.version>2.5</snakeyaml.version>
+        <snakeyaml.version>2.6</snakeyaml.version>
         <jettison.version>1.5.1</jettison.version>
         <xnio.version>3.8.17.Final</xnio.version>
         <jolokia.version>1.7.2</jolokia.version>
