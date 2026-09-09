@@ -5,12 +5,12 @@
     <parent>
         <groupId>de.eitco.cicd</groupId>
         <artifactId>eitco-oss-parent</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.6-SNAPSHOT</version>
     </parent>
 
     <groupId>de.eitco.commons</groupId>
     <artifactId>eitco-oss-commons-parent</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>eitco open source commons parent pom</name>
 
@@ -44,9 +44,9 @@
     </scm>
 
     <properties>
-        <spring.version>7.0.8</spring.version>
-        <spring.boot.version>4.0.7</spring.boot.version>
-        <spring-security.version>7.0.6</spring-security.version>
+        <spring.version>7.0.9</spring.version>
+        <spring.boot.version>4.0.8</spring.boot.version>
+        <spring-security.version>7.0.7</spring-security.version>
         <spring-security-oauth2.version>2.5.2.RELEASE</spring-security-oauth2.version>
         <spring.cloud.version>2025.1.2</spring.cloud.version>
         <codecentric.spring.version>4.0.2</codecentric.spring.version>
@@ -58,7 +58,7 @@
         <!-- See https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases -->
         <opentelemetry.instrumentation.version>2.21.0</opentelemetry.instrumentation.version>
 
-        <jooq.version>3.19.32</jooq.version>
+        <jooq.version>3.19.37</jooq.version>
 
         <xml.maven.plugin.version>1.1.0</xml.maven.plugin.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
@@ -79,7 +79,7 @@
         <com.google.guava.guava.version>31.1-jre</com.google.guava.guava.version>
         <com.sun.xml.bind.jaxb-impl.version>2.4.0-b180830.0438</com.sun.xml.bind.jaxb-impl.version>
         <caffeine.version>3.2.4</caffeine.version>
-        <org.postgresql.version>42.7.11</org.postgresql.version>
+        <org.postgresql.version>42.7.13</org.postgresql.version>
         <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <org.camunda.bpm.springboot.webapp.version>3.2.1</org.camunda.bpm.springboot.webapp.version>
 
@@ -93,7 +93,7 @@
         <jettison.version>1.5.1</jettison.version>
         <xnio.version>3.8.17.Final</xnio.version>
         <jolokia.version>1.7.2</jolokia.version>
-        <netty-bom.version>4.2.15.Final</netty-bom.version>
+        <netty-bom.version>4.2.17.Final</netty-bom.version>
 
         <gson-version>2.13.2</gson-version>
         <freemarker.version>2.3.34</freemarker.version>
@@ -122,6 +122,8 @@
         <jackson.version.module.scala>${jackson.version.module}</jackson.version.module.scala>
 
         <bouncycastle-bom.version>1.81.1</bouncycastle-bom.version>
+
+        <tomcat.version>11.0.25</tomcat.version>
     </properties>
 
     <dependencyManagement>
@@ -142,30 +144,6 @@
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.tika</groupId>
-                <artifactId>tika-parsers-standard-package</artifactId>
-                <version>${tika.version}</version>
-                <exclusions>
-                    <!-- Excluded because of package sealing violation in org.tukaani.xz -->
-                    <exclusion>
-                        <groupId>org.apache.tika</groupId>
-                        <artifactId>tika-parser-pkg-module</artifactId>
-                    </exclusion>
-                    <!-- Excluded because of version mismatch in Jackson dependencies. -->
-                    <exclusion>
-                        <groupId>org.apache.tika</groupId>
-                        <artifactId>tika-parser-cad-module</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.tika</groupId>
-                <artifactId>tika-bom</artifactId>
-                <version>${tika.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>io.netty</groupId>
@@ -196,6 +174,46 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <!--
+                Tomcat is pinned explicitly: overriding ${tomcat.version} alone has no effect,
+                because spring-boot-dependencies is imported and resolves its properties in its own context.
+            -->
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-annotations-api</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-jdbc</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-jsp-api</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-jasper</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-websocket</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>io.opentelemetry.instrumentation</groupId>
                 <artifactId>opentelemetry-instrumentation-bom</artifactId>
@@ -423,6 +441,31 @@
                 <groupId>io.spring.asciidoctor</groupId>
                 <artifactId>spring-asciidoctor-extensions-section-ids</artifactId>
                 <version>${spring-asciidoctor-extensions.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-parsers-standard-package</artifactId>
+                <version>${tika.version}</version>
+                <exclusions>
+                    <!-- Excluded because of package sealing violation in org.tukaani.xz -->
+                    <exclusion>
+                        <groupId>org.apache.tika</groupId>
+                        <artifactId>tika-parser-pkg-module</artifactId>
+                    </exclusion>
+                    <!-- Excluded because of version mismatch in Jackson dependencies. -->
+                    <exclusion>
+                        <groupId>org.apache.tika</groupId>
+                        <artifactId>tika-parser-cad-module</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-bom</artifactId>
+                <version>${tika.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
