@@ -124,7 +124,7 @@
         <jackson.version.module.kotlin>${jackson.version.module}</jackson.version.module.kotlin>
         <jackson.version.module.scala>${jackson.version.module}</jackson.version.module.scala>
 
-        <bouncycastle-bom.version>1.81.1</bouncycastle-bom.version>
+        <bouncycastle-bom.version>1.86.1</bouncycastle-bom.version>
     </properties>
 
     <dependencyManagement>
