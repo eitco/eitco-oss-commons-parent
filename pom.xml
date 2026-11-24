@@ -506,6 +506,14 @@
                 <plugin>
                     <groupId>org.sonatype.central</groupId>
                     <artifactId>central-publishing-maven-plugin</artifactId>
+                    <!--
+                        Pinned on purpose: central-custom-publishing-maven-plugin expects the bundle
+                        target/central-publishing/central-bundle.zip created by this plugin. Newer versions
+                        (e.g. 0.12.0 managed by eitco-oss-parent 1.1.3) skip staging completely when
+                        skipPublishing=true, so no bundle is created. Version 0.4.0 still creates the
+                        bundle and only skips the upload.
+                    -->
+                    <version>0.4.0</version>
                     <configuration>
                         <skipPublishing>true</skipPublishing>
                         <deploymentName>${central.deployment.name}</deploymentName>
